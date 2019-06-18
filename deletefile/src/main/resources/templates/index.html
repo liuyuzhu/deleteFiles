@@ -1,103 +1,116 @@
 <!DOCTYPE html>
 <html lang="zh-CN">
-	<head>
-		<meta charset="utf-8">
-		<meta http-equiv="X-UA-Compatible" content="IE=edge">
-		<meta name="viewport" content="width=device-width, initial-scale=1">
-		<!-- 上述3个meta标签*必须*放在最前面，任何其他内容都*必须*跟随其后！ -->
-		<title>删除文件</title>
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- 上述3个meta标签*必须*放在最前面，任何其他内容都*必须*跟随其后！ -->
+    <title>删除文件</title>
 
-		<!-- Bootstrap -->
-		<link href="./css/bootstrap.min.css" rel="stylesheet">
-		<!-- vue.js -->
-		<script src="js/vue.min.js"></script>
-	</head>
-	<body style="padding: 0 20%;">
-		<div id="delete">
-			<div class="page-header">
-				<h1>
-					删除文件
-					<br />
-					<small>本站是用来按名称删除项目中的文件</small>
-				</h1>
-			</div>
-			<div class="input-group">
-				<span class="input-group-addon" id="sizing-addon1">项目路径：</span>
-				<input type="text" class="form-control" placeholder="Project Path..." aria-describedby="sizing-addon1" id="projectPath" />
-			</div>
-			<div class="row" style="margin: 20px -15px;">
-				<div class="col-lg-6" style="width: 100%;">
-					<div class="input-group">
-						<span class="input-group-addon" id="basic-addon1">文件名称：</span>
-						<input type="text" class="form-control" placeholder="Files Name..." id="fileName" />
-						<span class="input-group-btn"><button class="btn btn-default" type="button" v-on:click="addFile">添加</button></span>
-						<span class="input-group-btn"><button class="btn btn-default" type="button" v-on:click="deleteFile">删除全部</button></span>
-					</div>
-					<!-- /input-group -->
-				</div>
-				<!-- /.col-lg-6 -->
-			</div>
-			<!-- /.row -->
-			<!-- 展示将要删除的文件名称 -->
-			<label>将要删除的文件</label>
-			<ul class="list-group">
-				<li class="list-group-item" v-for="(todo,index) in todos">{{index+1}}. {{todo}}</li>
-			</ul>
-			<!-- 展示添加的文件名 -->
-			<label>已删除的文件（数量）</label>
-			<ul class="list-group">
-				<li class="list-group-item" v-for="(result,index) in results">
-					<span class="badge">{{result.count}}</span>
-					{{index+1}}. {{result.name}}
-				</li>
-			</ul>
+    <!-- Bootstrap -->
+    <link href="./css/bootstrap.min.css" rel="stylesheet">
+    <!-- vue.js -->
+    <script src="js/vue.min.js"></script>
+</head>
+<body style="padding: 0 20%;">
+<div id="delete">
+    <div class="page-header">
+        <h1>
+            删除文件
+            <br/>
+            <small>本站是用来按名称删除项目中的文件</small>
+        </h1>
+    </div>
+    <div class="input-group">
+        <span class="input-group-addon" id="sizing-addon1">项目路径：</span>
+        <input type="text" class="form-control" placeholder="Project Path..." aria-describedby="sizing-addon1"
+               id="projectPath"/>
+    </div>
+    <div class="row" style="margin: 20px -15px;">
+        <div class="col-lg-6" style="width: 100%;">
+            <div class="input-group">
+                <span class="input-group-addon" id="basic-addon1">文件名称：</span>
+                <input type="text" class="form-control" placeholder="Files Name..." id="fileName"/>
+                <span class="input-group-btn"><button class="btn btn-default" type="button"
+                                                      v-on:click="addFile">添加</button></span>
+                <span class="input-group-btn"><button class="btn btn-default" type="button"
+                                                      v-on:click="deleteFile">删除全部</button></span>
+            </div>
+            <!-- /input-group -->
+        </div>
+        <!-- /.col-lg-6 -->
+    </div>
+    <!-- /.row -->
+    <!-- 展示将要删除的文件名称 -->
+    <label>将要删除的文件</label>
+    <ul class="list-group">
+        <li class="list-group-item" v-for="(todo,index) in todos">{{index+1}}. {{todo}}</li>
+    </ul>
+    <!-- 展示添加的文件名 -->
+    <label>已删除的文件（数量）</label>
+    <ul class="list-group">
+        <li class="list-group-item" v-for="(result,index) in results">
+            <span class="badge">{{result.count}}</span>
+            {{index+1}}. {{result.name}}
+        </li>
+    </ul>
 
-		</div>
-		<!-- jQuery (Bootstrap 的所有 JavaScript 插件都依赖 jQuery，所以必须放在前边) -->
-		<script src="./js/jquery-3.4.1.min.js"></script>
-		<!-- 加载 Bootstrap 的所有 JavaScript 插件。你也可以根据需要只加载单个插件。 -->
-		<script src="./js/bootstrap.min.js"></script>
-		<script>
-			var app4 = new Vue({
-				el: '#delete',
-				data: {
-					todos: [],
-					results: [],
-				},
-				methods: {
-					addFile: function() {
-						var fileName = $('#fileName').val();
-						var have = false;
-						//判空
-						if (!fileName) {
-							return;
-						}
-						if (this.todos.length != 0) {
-							this.todos.forEach(function(item, index) {
-								if (item === fileName) {
-									have = true;
-								}
-							})
-						}
-						if (!have) {
-							//添加到数据中
-							this.todos.push(fileName);
-						}
+</div>
+<!-- jQuery (Bootstrap 的所有 JavaScript 插件都依赖 jQuery，所以必须放在前边) -->
+<script src="./js/jquery-3.4.1.min.js"></script>
+<!-- 加载 Bootstrap 的所有 JavaScript 插件。你也可以根据需要只加载单个插件。 -->
+<script src="./js/bootstrap.min.js"></script>
+<script>
+    var app4 = new Vue({
+        el: '#delete',
+        data: {
+            todos: [],
+            results: [],
+        },
+        methods: {
+            addFile: function () {
+                let fileName = $('#fileName').val();
+                let have = false;
+                //判空
+                if (!fileName) {
+                    return;
+                }
+                if (this.todos.length != 0) {
+                    this.todos.forEach(function (item, index) {
+                        if (item === fileName) {
+                            have = true;
+                        }
+                    })
+                }
+                if (!have) {
+                    //添加到数据中
+                    this.todos.push(fileName);
+                }
 
-						//清空输入框
-						$('#fileName').val('');
-					},
-					deleteFile: function() {
-						var projectPath = $('#projectPath').val();
-						if (!projectPath) {
-							alert('警告：请输入项目路径！')
-						}
-						if (this.todos.length === 0) {
-							alert('警告：请添加要删除的文件名！')
-						}
-					}
-				}
-			});
-		</script>
-	</body>
+                //清空输入框
+                $('#fileName').val('');
+            },
+            deleteFile: function () {
+                let projectPath = $('#projectPath').val();
+                if (!projectPath) {
+                    alert('警告：请输入项目路径！')
+                }
+                if (this.todos.length === 0) {
+                    alert('警告：请添加要删除的文件名！')
+                }
+                $.ajax({
+                    url: '',
+                    type: 'post',
+                    data: JSON.parse(this.todos),
+                    dataType: '',
+                    success: function (result) {
+
+                    }
+
+                });
+            }
+        }
+    });
+</script>
+</body>
 </html>
