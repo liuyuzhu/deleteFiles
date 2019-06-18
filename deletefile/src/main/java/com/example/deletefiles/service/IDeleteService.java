@@ -5,8 +5,9 @@ import java.util.Map;
 
 /**
  * 删除文件接口
+ * @author deyong_tong
  */
 public interface IDeleteService {
 
-    public Map<String,Integer> deleteFiles(List<String> filesName);
+    Map<String,Integer> deleteFiles(List<String> filesName,String projectName);
 }

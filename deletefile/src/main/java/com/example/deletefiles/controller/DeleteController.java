@@ -10,6 +10,7 @@ import java.util.Map;
 
 /**
  * 删除控制层
+ * @author deyong_tong
  */
 @RestController("/deleteFiles")
 public class DeleteController {
@@ -18,8 +19,8 @@ public class DeleteController {
     private IDeleteService deleteService;
 
     @PostMapping("/delete")
-    public Map<String,Integer> deleteFiles(List<String> filesName){
-        return deleteService.deleteFiles(filesName);
+    public Map<String,Integer> deleteFiles(List<String> filesName,String projectName){
+        return deleteService.deleteFiles(filesName,projectName);
 
     }
 
