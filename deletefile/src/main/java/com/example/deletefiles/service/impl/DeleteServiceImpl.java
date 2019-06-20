@@ -17,12 +17,9 @@ import java.util.Map;
 @Service("DeleteServiceImpl")
 public class DeleteServiceImpl implements IDeleteService {
 
-    @Resource
-    public Delete delete;
-
     @Override
     public Map<String, Integer> deleteFiles(List<String> filesName, String projectName) {
-
-        return null;
+        Map<String, Integer> deleteFile = Delete.delete(projectName,filesName);
+        return deleteFile;
     }
 }
